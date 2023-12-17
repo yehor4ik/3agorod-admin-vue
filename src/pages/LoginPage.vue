@@ -16,22 +16,21 @@
 <script>
 import {apiAuth} from "@/services/api/Auth/ApiAuth";
 import {ROUTES_PATHS} from "@/router";
+import Vue from 'vue'
+import Component from 'vue-class-component'
 
-export default {
-  name: 'LoginPage',
-  data: () => ({
-    email: '',
-    password: '',
-  }),
-  methods: {
-    login() {
+@Component
+export default class LoginPage extends Vue {
+  email = '';
+  password = '';
+
+  login() {
       apiAuth.login({email: this.email, password: this.password}).then(() => {
         this.email = '';
         this.password = '';
         this.$router.push(ROUTES_PATHS.HOME)
       }).catch(e => console.error(e))
     }
-  }
 }
 </script>
 
